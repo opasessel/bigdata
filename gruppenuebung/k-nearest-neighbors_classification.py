@@ -8,7 +8,7 @@ METRIC = 'euclidean'
 
 # read training and test data
 train = pd.read_csv('online_shoppers_intention_train.csv')
-test = pd.read_csv('online_shoppers_intention_train.csv')
+test = pd.read_csv('online_shoppers_intention_test.csv')
 
 # select the last column as label (y)
 X_train = train.iloc[:, :-1].values
