@@ -24,7 +24,7 @@ class OnlineShopAnalysis:
 
     # Grid Search
     def grid_search(self):
-        """ Perform parameter analysis via Grid Search & run analysis of algo with best parameters found """
+        """ Perform hyperparameter analysis via Grid Search & save best settings to object classifier """
 
         # perform Grid Search
         print('')
@@ -35,14 +35,13 @@ class OnlineShopAnalysis:
         # override classifier with best estimator
         self.classifier = search.best_estimator_
         print('Classifier was overridden with best estimator')
-        # set best params
+        # set & print best params
         self.best_params = search.best_params_
         print('Best params:')
         print(self.best_params)
 
     def analyze_algo(self):
-        """ Analyzes ML algorithm performance.
-        Create classifier during function call! """
+        """ Train algorithm, predict results for test data & analyze performance via cross validation """
         print('')
         print('Starting Analysis with set classifier:')
 
@@ -56,8 +55,8 @@ class OnlineShopAnalysis:
         self.cross_val = np.mean(
             sklearn.model_selection.cross_val_score(self.classifier, self.x_train, self.y_train, cv=10, scoring='f1_macro'))
 
-    # print the performance results for the predicted test results
     def print_result(self):
+        """ Print the performance results for the predicted test results """
         print('Results for', self.algo_name, ':')
         print('F1 Score:', f1_score(self.y_test, self.y_pred))
         print('Cross Validation:', self.cross_val)
